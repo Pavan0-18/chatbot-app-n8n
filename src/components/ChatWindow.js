@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { 
   GET_CHAT_MESSAGES, 
@@ -32,12 +32,16 @@ const ChatWindow = ({ chatId, onUpdateTitle }) => {
   const [sendMessageAction] = useMutation(SEND_MESSAGE_ACTION);
 
   // Use subscription data if available, otherwise use query data
-  const messages = subscriptionData?.messages || chatData?.chats_by_pk?.messages || [];
+  const messages = useMemo(() => {
+    return subscriptionData?.messages ?? chatData?.chats_by_pk?.messages ?? [];
+  }, [subscriptionData, chatData]);
   const chatTitle = chatData?.chats_by_pk?.title;
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    scrollToBottom();
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
   // Auto-resize textarea
@@ -48,9 +52,7 @@ const ChatWindow = ({ chatId, onUpdateTitle }) => {
     }
   }, [message]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // Removed scrollToBottom helper to satisfy exhaustive-deps; logic inlined in effect above
 
   const handleSendMessage = async (e) => {
     e.preventDefault();

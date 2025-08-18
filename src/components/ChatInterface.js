@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { useSignOut, useUserId } from '@nhost/react';
+import { useSignOut } from '@nhost/react';
 import { 
   GET_CHATS, 
   CREATE_CHAT, 
@@ -15,7 +15,6 @@ import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 const ChatInterface = () => {
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const userId = useUserId();
   const { signOut } = useSignOut();
 
   const { data: chatsData, loading: chatsLoading, error: chatsError } = useQuery(GET_CHATS);
