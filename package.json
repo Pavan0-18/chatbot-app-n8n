@@ -3,14 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.13.9",
+    "@headlessui/react": "^2.2.7",
+    "@heroicons/react": "^2.0.0",
+    "@nhost/nhost-js": "latest",
+    "@nhost/react": "latest",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "graphql": "^16.11.0",
+    "graphql-ws": "^6.0.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "tailwindcss": "^3.3.0",
+    "web-vitals": "^2.1.4",
+    "ws": "^8.18.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +44,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6"
   }
 }
